@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+# Cancel an older run when new commits arrive on the same branch
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Format & Lint
+    runs-on: xcode-27
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Check formatting (swift-format)
+        run: swift format lint --strict --recursive Hatchel HatchelTests HatchelUITests
+
+      - name: Resolve packages
+        run: >
+          xcodebuild -resolvePackageDependencies
+          -project Hatchel.xcodeproj
+          -scheme Hatchel
+          -clonedSourcePackagesDirPath .spm
+
+      - name: Lint (SwiftLint, version pinned by Package.resolved)
+        run: |
+          swiftlint=$(find .spm/artifacts -type f -name swiftlint -perm -u+x | head -n 1)
+          if [ -z "$swiftlint" ]; then
+            echo "::error::SwiftLint binary not found in resolved packages"
+            exit 1
+          fi
+          "$swiftlint" version
+          "$swiftlint" lint --strict --reporter github-actions-logging Hatchel HatchelTests HatchelUITests
+
+  test:
+    name: Build & Test
+    runs-on: xcode-27
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Build and run unit tests
+        run: >
+          xcodebuild test
+          -project Hatchel.xcodeproj
+          -scheme Hatchel
+          -destination 'platform=macOS'
+          -clonedSourcePackagesDirPath .spm
+          -skipPackagePluginValidation
+          -skip-testing:HatchelUITests
+          CODE_SIGN_IDENTITY=-
+          SWIFT_TREAT_WARNINGS_AS_ERRORS=YES

@@ -22,6 +22,18 @@
   "files": [
     {
       "kind": "group",
+      "path": ".github",
+      "children": [
+        {
+          "kind": "group",
+          "path": "workflows",
+          "children": [
+            { "path": "ci.yml" },
+          ],
+        },
+      ],
+    }, {
+      "kind": "group",
       "path": ".githooks",
       "children": [
         { "path": "pre-commit" },
@@ -30,11 +42,11 @@
     { "kind": "folder", "path": "Hatchel", "target-membership": [ "Hatchel" ] },
     { "kind": "folder", "path": "HatchelTests", "target-membership": [ "HatchelTests" ] },
     { "kind": "folder", "path": "HatchelUITests", "target-membership": [ "HatchelUITests" ] },
+    { "path": ".editorconfig" },
     { "path": ".gitignore" },
     { "path": ".gitattributes" },
     { "path": ".swift-format" },
     { "path": ".swiftlint.yml" },
-    { "path": ".editorconfig" },
     { "path": "LICENSE" },
     { "path": "README.md" },
     {
