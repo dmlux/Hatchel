@@ -5,14 +5,14 @@
 //  Created by Denis-Michael Lux on 16.11.26.
 //
 
+import Foundation
 import Testing
 
 @testable import Hatchel
 
-struct HatchelTests {
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
-        // Swift Testing Documentation
-        // https://developer.apple.com/documentation/testing
+internal struct HatchelTests {
+    @Test
+    func bundleIdentifierIsStable() {
+        #expect(Bundle.main.bundleIdentifier == "dev.hatchel.Hatchel")
     }
 }

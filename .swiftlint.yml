@@ -1,3 +1,34 @@
+# Enable every opt-in rule; exceptions are listed below with a reason.
+opt_in_rules:
+  - all
+
+disabled_rules:
+  # Contradict other enabled rules or swift-format
+  - contrasted_opening_brace     # vs. opening_brace
+  - explicit_enum_raw_value      # vs. redundant_string_enum_value
+  - explicit_type_interface      # vs. redundant_type_annotation
+  - extension_access_modifier    # vs. no_extension_access_modifier / swift-format
+  - object_literal               # vs. discouraged_object_literal / swift-format
+  # Not a good fit for this project
+  - explicit_acl                 # explicit_top_level_acl is enough
+  - no_grouping_extension        # extensions in the same file are idiomatic
+  - no_magic_numbers             # too noisy for SwiftUI layout values
+  - one_declaration_per_file     # small private SwiftUI subviews are fine
+  - prefer_nimble                # we use Swift Testing / XCTest
+  - prefixed_toplevel_constant   # Objective-C convention
+  - required_deinit              # empty deinits add nothing
+  - sorted_enum_cases            # case order often carries meaning
+
+identifier_name:
+  excluded:
+    - id
+    - x
+    - y
+
 line_length:
   warning: 120
   error: 200
+  ignores_urls: true
+
+trailing_comma:
+  mandatory_comma: true

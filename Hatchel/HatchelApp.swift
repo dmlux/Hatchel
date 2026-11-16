@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct HatchelApp: App {
+internal struct HatchelApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
