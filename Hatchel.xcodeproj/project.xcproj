@@ -17,9 +17,13 @@
       "version": {
         "up-to-next-minor-version": "0.65.1",
       },
+    }, {
+      "kind": "local",
+      "path": "Packages/HatchelCore",
     },
   ],
   "files": [
+    { "path": "Hatchel.xctestplan" },
     {
       "kind": "group",
       "path": ".github",
@@ -73,6 +77,12 @@
         "compile-sources",
         "frameworks",
         "resources",
+      ],
+      "package-product-members": [
+        {
+          "product-name": "HatchelCore",
+          "build-phase": { "build-phase": "frameworks" },
+        },
       ],
       "build-settings": {
         "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",

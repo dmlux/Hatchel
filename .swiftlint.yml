@@ -18,6 +18,7 @@ disabled_rules:
   - prefixed_toplevel_constant   # Objective-C convention
   - required_deinit              # empty deinits add nothing
   - sorted_enum_cases            # case order often carries meaning
+  - trailing_comma               # swift-format owns trailing commas
 
 identifier_name:
   excluded:
@@ -29,9 +30,6 @@ line_length:
   warning: 120
   error: 200
   ignores_urls: true
-
-trailing_comma:
-  mandatory_comma: true
 
 file_header:
   required_string: |-

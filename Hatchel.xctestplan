@@ -1,0 +1,31 @@
+{
+  "configurations" : [
+    {
+      "id" : "7FA3E752-62A8-452A-9525-C859B7583FC4",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Hatchel.xcodeproj",
+        "identifier" : "D50117F330AB6755009664CB",
+        "name" : "HatchelUITests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Hatchel.xcodeproj",
+        "identifier" : "D50117E930AB6755009664CB",
+        "name" : "HatchelTests"
+      }
+    }
+  ],
+  "version" : 1
+}

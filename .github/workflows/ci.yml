@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Check formatting (swift-format)
-        run: swift format lint --strict --recursive Hatchel HatchelTests HatchelUITests
+        run: swift format lint --strict --recursive Hatchel HatchelTests HatchelUITests Packages
 
       - name: Resolve packages
         run: >
@@ -39,7 +39,7 @@ jobs:
             exit 1
           fi
           "$swiftlint" version
-          "$swiftlint" lint --strict --reporter github-actions-logging Hatchel HatchelTests HatchelUITests
+          "$swiftlint" lint --strict --reporter github-actions-logging Hatchel HatchelTests HatchelUITests Packages
 
   test:
     name: Build & Test
@@ -59,3 +59,6 @@ jobs:
           -skip-testing:HatchelUITests
           CODE_SIGN_IDENTITY=-
           SWIFT_TREAT_WARNINGS_AS_ERRORS=YES
+
+      - name: Build and test packages
+        run: swift test --package-path Packages/HatchelCore -Xswiftc -warnings-as-errors
