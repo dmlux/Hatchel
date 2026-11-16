@@ -15,6 +15,8 @@
     { "kind": "folder", "path": "HatchelTests", "target-membership": [ "HatchelTests" ] },
     { "kind": "folder", "path": "HatchelUITests", "target-membership": [ "HatchelUITests" ] },
     { "path": ".gitignore" },
+    { "path": ".swift-format" },
+    { "path": ".editorconfig" },
     { "path": "LICENSE" },
     { "path": "README.md" },
     {
