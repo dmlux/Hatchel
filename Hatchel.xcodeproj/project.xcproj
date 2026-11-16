@@ -20,6 +20,13 @@
     },
   ],
   "files": [
+    {
+      "kind": "group",
+      "path": ".githooks",
+      "children": [
+        { "path": "pre-commit" },
+      ],
+    },
     { "kind": "folder", "path": "Hatchel", "target-membership": [ "Hatchel" ] },
     { "kind": "folder", "path": "HatchelTests", "target-membership": [ "HatchelTests" ] },
     { "kind": "folder", "path": "HatchelUITests", "target-membership": [ "HatchelUITests" ] },

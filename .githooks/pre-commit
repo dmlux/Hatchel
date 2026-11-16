@@ -1,0 +1,47 @@
+#!/bin/sh
+#
+# Pre-commit hook for Hatchel.
+# Checks all staged Swift files with swift-format and SwiftLint.
+# Activate once per clone with: git config core.hooksPath .githooks
+
+set -eu
+
+# Staged Swift files (added, copied, modified, renamed)
+files=$(git diff --cached --name-only --diff-filter=ACMR -- '*.swift')
+if [ -z "$files" ]; then
+    exit 0
+fi
+
+# GUI clients like Xcode may not have Homebrew in PATH
+PATH="/opt/homebrew/bin:$PATH"
+
+status=0
+
+echo "swift-format: checking staged files..."
+# shellcheck disable=SC2086
+if ! swift format lint --strict $files; then
+    status=1
+fi
+
+if ! command -v swiftlint >/dev/null 2>&1; then
+    echo "error: swiftlint not found. Install it with: brew install swiftlint" >&2
+    exit 1
+fi
+
+resolved="Hatchel.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
+pinned=$(grep -A6 '"identity" : "swiftlintplugins"' "$resolved" | sed -n 's/.*"version" : "\(.*\)".*/\1/p')
+installed=$(swiftlint version)
+if [ "$pinned" != "$installed" ]; then
+    echo "warning: swiftlint $installed is installed, but the project pins $pinned" >&2
+fi
+
+echo "SwiftLint: checking staged files..."
+# shellcheck disable=SC2086
+if ! swiftlint lint --strict --quiet $files; then
+    status=1
+fi
+
+if [ "$status" -ne 0 ]; then
+    echo "Commit aborted. Fix the issues above; formatting can be fixed with: swift format format -i <file>" >&2
+fi
+exit $status
