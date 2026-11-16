@@ -1,0 +1,11 @@
+# Normalize all text files to LF in the repository
+* text=auto eol=lf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.pdf binary
+*.icns binary
+
+# Collapse generated files in GitHub diffs
+Package.resolved linguist-generated=true

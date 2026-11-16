@@ -24,6 +24,7 @@
     { "kind": "folder", "path": "HatchelTests", "target-membership": [ "HatchelTests" ] },
     { "kind": "folder", "path": "HatchelUITests", "target-membership": [ "HatchelUITests" ] },
     { "path": ".gitignore" },
+    { "path": ".gitattributes" },
     { "path": ".swift-format" },
     { "path": ".swiftlint.yml" },
     { "path": ".editorconfig" },
