@@ -10,12 +10,22 @@
       "Base",
     ],
   },
+  "packages": [
+    {
+      "kind": "remote",
+      "repository": "https://github.com/SimplyDanny/SwiftLintPlugins",
+      "version": {
+        "up-to-next-minor-version": "0.65.1",
+      },
+    },
+  ],
   "files": [
     { "kind": "folder", "path": "Hatchel", "target-membership": [ "Hatchel" ] },
     { "kind": "folder", "path": "HatchelTests", "target-membership": [ "HatchelTests" ] },
     { "kind": "folder", "path": "HatchelUITests", "target-membership": [ "HatchelUITests" ] },
     { "path": ".gitignore" },
     { "path": ".swift-format" },
+    { "path": ".swiftlint.yml" },
     { "path": ".editorconfig" },
     { "path": "LICENSE" },
     { "path": "README.md" },
@@ -35,6 +45,9 @@
       "id": "D50117DC30AB6754009664CB",
       "product": "Products/Hatchel.app",
       "product-type": "application",
+      "dependencies": [
+        { "kind": "package", "package": "SwiftLintPlugins", "product-name": "SwiftLintBuildToolPlugin", "product-type": "build-tool-plugin" },
+      ],
       "build-phases": [
         "compile-sources",
         "frameworks",
@@ -85,6 +98,7 @@
       "product-type": "bundle.unit-test",
       "test-host-target": "Hatchel",
       "dependencies": [
+        { "kind": "package", "package": "SwiftLintPlugins", "product-name": "SwiftLintBuildToolPlugin", "product-type": "build-tool-plugin" },
         "Hatchel",
       ],
       "build-phases": [
@@ -113,6 +127,7 @@
       "product-type": "bundle.ui-testing",
       "test-host-target": "Hatchel",
       "dependencies": [
+        { "kind": "package", "package": "SwiftLintPlugins", "product-name": "SwiftLintBuildToolPlugin", "product-type": "build-tool-plugin" },
         "Hatchel",
       ],
       "build-phases": [
