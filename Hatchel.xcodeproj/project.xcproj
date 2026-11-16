@@ -48,6 +48,7 @@
     { "path": ".swift-format" },
     { "path": ".swiftlint.yml" },
     { "path": "LICENSE" },
+    { "path": "CONTRIBUTING.md" },
     { "path": "README.md" },
     {
       "kind": "group",
